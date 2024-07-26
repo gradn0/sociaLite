@@ -42,11 +42,15 @@ body {
   }
 
   .sidebar-left {
-    @apply sticky left-0 top-0 flex h-screen flex-col overflow-auto pb-5 pt-28 max-md:hidden px-7 justify-between;
+    @apply sticky left-0 top-0 flex h-screen flex-col overflow-auto pb-5 pt-28 max-md:hidden px-7 gap-10;
   }
 
   .sidebar-right {
-    @apply sticky right-0 top-0 flex h-screen flex-col justify-between overflow-auto px-10 pb-6 pt-28 max-xl:hidden;
+    @apply sticky right-0 top-0 flex h-screen flex-col gap-10 overflow-auto px-10 pb-6 pt-28 max-xl:hidden;
+  }
+
+  .mobile-nav {
+    @apply sticky bottom-0 w-full pb-2 px-2 md:hidden;
   }
 }
 

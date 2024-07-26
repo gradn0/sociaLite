@@ -5,6 +5,7 @@ import "../globals.css";
 import Header from "@/components/shared/Header";
 import SidebarLeft from "@/components/shared/SidebarLeft";
 import SidebarRight from "@/components/shared/SidebarRight";
+import MobileNav from "@/components/shared/MobileNav";
 
 export const metadata: Metadata = {
   title: "SociaLite",
@@ -28,6 +29,7 @@ export default function RootLayout({
             <section className="main-content">{children}</section>
             <SidebarRight />
           </main>
+          <MobileNav />
         </body>
       </html>
     </ClerkProvider>

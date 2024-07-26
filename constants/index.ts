@@ -72,3 +72,15 @@ export const sampleFriends = [
     name: "April Sky",
   },
 ];
+
+export const sampleActivity = [
+  {
+    name: "Hally Harolds",
+    action: "Sent you a friend request",
+  },
+  {
+    name: "Alex Kai",
+    action: "Added a photo in",
+    place: "Talk.js",
+  },
+];

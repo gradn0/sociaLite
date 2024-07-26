@@ -12,7 +12,7 @@ const SidebarLeft = () => {
   return (
     <section className="sidebar-left">
       <nav>
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-3">
           {sidebarLinks.map((link) => {
             const isActive = pathname.includes(link.route);
             return (
@@ -42,7 +42,7 @@ const SidebarLeft = () => {
 
       <div className="flex flex-col max-lg:hidden p-1 gap-5">
         <h2 className="text-body-bold">My Groups</h2>
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-1">
           {sampleGroups.map((group, i) => {
             return (
               <div
