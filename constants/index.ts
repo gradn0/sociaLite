@@ -42,3 +42,33 @@ export const sampleGroups = [
     name: "My Dream House",
   },
 ];
+
+export const sampleFriends = [
+  {
+    name: "Jaden Chance",
+  },
+  {
+    name: "Arezki Williams",
+  },
+  {
+    name: "Rose James",
+  },
+  {
+    name: "Tman Mats",
+  },
+  {
+    name: "Alex Andrew",
+  },
+  {
+    name: "Kaixi Cark",
+  },
+  {
+    name: "Hamid Oskip",
+  },
+  {
+    name: "Serena Lewis",
+  },
+  {
+    name: "April Sky",
+  },
+];

@@ -17,9 +17,10 @@ const SidebarLeft = () => {
             const isActive = pathname.includes(link.route);
             return (
               <Link
+                key={link.label}
                 href={link.route}
                 className={`flex items-center gap-4 w-full rounded-lg p-1 ${
-                  isActive && "bg-gray-200"
+                  isActive && "bg-gray-300"
                 }`}
               >
                 <Image
@@ -44,7 +45,10 @@ const SidebarLeft = () => {
         <ul className="flex flex-col gap-2">
           {sampleGroups.map((group, i) => {
             return (
-              <div className="flex items-center py-1 gap-3 cursor-pointer">
+              <div
+                key={i}
+                className="flex items-center py-1 gap-3 cursor-pointer"
+              >
                 <Image
                   src={`https://fer-uig.glitch.me?uuid=${i}`}
                   width={37}

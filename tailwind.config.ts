@@ -187,6 +187,7 @@ const config: Config = {
         "light-3": "#7685a2",
         "light-4": "#5c667a",
         "gray-1": "#697C89",
+        off_white: "#F5F5F5",
         glassmorphism: "1px solid rgba( 255, 255, 255, 0.18 )",
       },
     },
