@@ -173,6 +173,7 @@ const config: Config = {
     extend: {
       colors: {
         "primary-500": "#80aaff",
+        "primary-500-light": "#99bbff",
         "secondary-500": "#FFB620",
         blue: "#0095F6",
         "logout-btn": "#5c92ff",
@@ -186,7 +187,7 @@ const config: Config = {
         "light-3": "#7685a2",
         "light-4": "#5c667a",
         "gray-1": "#697C89",
-        glassmorphism: "rgba(16, 16, 18, 0.60)",
+        glassmorphism: "1px solid rgba( 255, 255, 255, 0.18 )",
       },
     },
   },

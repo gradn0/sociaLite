@@ -22,9 +22,23 @@ body {
   box-sizing: border-box;
 }
 
+.cl-avatarBox {
+  @apply size-[1.9rem] md:size-[2.1rem];
+}
+
 @layer components {
+  /* Typography */
   .text-heading {
-    @apply text-heading2-bold text-light-1;
+    @apply text-heading2-bold text-dark-1;
+  }
+
+  /* Sections */
+  .main-content {
+    @apply flex flex-col flex-1 min-h-screen items-center px-6 pb-10 pt-28 max-md:pb-32 sm:px-10;
+  }
+
+  .header {
+    @apply fixed top-0 z-30 flex w-full items-center justify-between bg-light-1 px-6 py-7 shadow-sm;
   }
 }
 
