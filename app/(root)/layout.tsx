@@ -23,7 +23,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${inter.className} bg-light-2`}>
           <Header />
-          <main>
+          <main className="flex">
             <SidebarLeft />
             <section className="main-content">{children}</section>
             <SidebarRight />
