@@ -7,19 +7,19 @@ export const sidebarLinks = [
   },
   {
     imgURL: "/assets/friends.svg",
-    route: "/search",
+    route: "/friends",
     label: "Friends",
     background: "#85bc89",
   },
   {
     imgURL: "/assets/activity.svg",
-    route: "/search",
+    route: "/activity",
     label: "Activity",
     background: "#f19e9d",
   },
   {
     imgURL: "/assets/groups.svg",
-    route: "/activity",
+    route: "/groups",
     label: "Groups",
     background: "#f8c28c",
   },

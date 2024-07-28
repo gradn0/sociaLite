@@ -14,7 +14,8 @@ const SidebarLeft = () => {
       <nav>
         <ul className="flex flex-col gap-3">
           {sidebarLinks.map((link) => {
-            const isActive = pathname.includes(link.route);
+            const isActive = pathname === link.route;
+
             return (
               <Link
                 key={link.label}

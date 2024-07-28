@@ -33,8 +33,12 @@ body {
   }
 
   /* Sections */
-  .main-content {
+  .main-content-container {
     @apply flex flex-col flex-1 min-h-screen items-center px-6 pb-10 pt-28 max-md:pb-32 sm:px-10;
+  }
+
+  .main-content {
+    @apply flex flex-col gap-5 max-xl:w-full w-[700px];
   }
 
   .header {
@@ -50,7 +54,7 @@ body {
   }
 
   .mobile-nav {
-    @apply sticky bottom-0 w-full pb-2 px-2 md:hidden;
+    @apply sticky bottom-0 w-full pb-2 px-2 md:hidden z-10;
   }
 
   /* Components */

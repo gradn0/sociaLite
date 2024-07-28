@@ -26,7 +26,7 @@ export default function RootLayout({
           <Header />
           <main className="flex">
             <SidebarLeft />
-            <section className="main-content">{children}</section>
+            <section className="main-content-container">{children}</section>
             <SidebarRight />
           </main>
           <MobileNav />

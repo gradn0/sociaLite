@@ -10,7 +10,7 @@ const MobileNav = () => {
     <nav className="mobile-nav">
       <ul className="flex gap-2">
         {sidebarLinks.map((link) => {
-          const isActive = pathname.includes(link.route);
+          const isActive = pathname === link.route;
           return (
             <Link
               key={link.label}
