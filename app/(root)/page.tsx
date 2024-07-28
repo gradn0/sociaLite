@@ -1,5 +1,7 @@
+import CreatePost from "@/components/CreatePost";
+
 const Home = () => {
-  return <h1 className="text-heading text-left"></h1>;
+  return <CreatePost />;
 };
 
 export default Home;

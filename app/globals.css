@@ -52,6 +52,11 @@ body {
   .mobile-nav {
     @apply sticky bottom-0 w-full pb-2 px-2 md:hidden;
   }
+
+  /* Components */
+  .text-input {
+    @apply bg-light-2 rounded-full py-2 px-5 focus:outline-none;
+  }
 }
 
 @layer utilities {

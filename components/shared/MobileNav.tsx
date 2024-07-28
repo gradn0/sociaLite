@@ -15,7 +15,7 @@ const MobileNav = () => {
             <Link
               key={link.label}
               href={link.route}
-              className={`flex items-center gap-4 w-full rounded-lg p-1 ${
+              className={`flex items-center gap-4 w-full rounded-lg p-1 relative flex-col sm:flex-1 sm:px-2 sm:py-2.5 ${
                 isActive && "bg-gray-300"
               }`}
             >
@@ -27,7 +27,7 @@ const MobileNav = () => {
                 className="p-2 rounded-full max-lg:mx-auto"
                 style={{ backgroundColor: link.background }}
               />
-              <p className="text-dark-1 text-base-medium max-lg:hidden">
+              <p className="text-dark-1 text-subtle-medium max-sm:hidden">
                 {link.label}
               </p>
             </Link>

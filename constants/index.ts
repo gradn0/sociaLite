@@ -25,6 +25,21 @@ export const sidebarLinks = [
   },
 ];
 
+export const createPostOptions = [
+  {
+    label: "Photo",
+    imgURL: "/assets/photo.svg",
+  },
+  {
+    label: "Video",
+    imgURL: "/assets/video.svg",
+  },
+  {
+    label: "Go Live",
+    imgURL: "/assets/camera.svg",
+  },
+];
+
 export const sampleGroups = [
   {
     name: "The nerd head",
