@@ -4,18 +4,18 @@ import React from "react";
 
 const CreatePost = () => {
   return (
-    <div className="bg-light-1 rounded-lg py-2 px-7">
+    <div className="bg-light-1 rounded-lg py-2 px-7 shadow-sm">
       <div className="flex gap-6 border-b border-grey p-4">
         <Image
           src="https://fer-uig.glitch.me?uuid=10"
-          width={40}
-          height={40}
+          width={44}
+          height={44}
           alt="your avatar"
           className="rounded-full"
         />
         <input
           type="text"
-          className="text-input"
+          className="text-input w-full text-base-regular flex flex-col flex-wrap"
           placeholder="What's on your mind?"
         />
       </div>
@@ -25,11 +25,11 @@ const CreatePost = () => {
           <div className="flex gap-2 items-center cursor-pointer">
             <Image
               src={option.imgURL}
-              width={20}
-              height={20}
+              width={17}
+              height={17}
               alt={option.label}
             />
-            <p className="text-base-medium max-sm:hidden">{option.label}</p>
+            <p className="text-base-semibold max-sm:hidden">{option.label}</p>
           </div>
         ))}
       </div>
