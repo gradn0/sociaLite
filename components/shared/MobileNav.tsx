@@ -7,7 +7,7 @@ import Link from "next/link";
 const MobileNav = () => {
   const pathname = usePathname();
   return (
-    <nav className="mobile-nav">
+    <nav className="mobile-nav bg-light-1 py-2">
       <ul className="flex gap-2">
         {sidebarLinks.map((link) => {
           const isActive = pathname === link.route;

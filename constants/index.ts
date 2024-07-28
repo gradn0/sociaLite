@@ -61,6 +61,9 @@ export const sampleGroups = [
 export const sampleFriends = [
   {
     name: "Jaden Chance",
+    friends: 400,
+    posts: 90,
+    bio: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
   },
   {
     name: "Arezki Williams",
