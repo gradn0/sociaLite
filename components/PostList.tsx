@@ -1,10 +1,14 @@
 import { PostWithAuthor } from "@/lib/prisma";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FaCommentDots, FaHeart } from "react-icons/fa";
 import { IoEllipsisVertical } from "react-icons/io5";
 
 const PostList = ({ posts }: { posts: PostWithAuthor[] | undefined }) => {
+  if (!posts || posts.length < 1)
+    return <p className="text-gray-1 mx-auto">No Posts</p>;
+
   return (
     <ul className="flex flex-col gap-5">
       {posts &&
@@ -14,15 +18,22 @@ const PostList = ({ posts }: { posts: PostWithAuthor[] | undefined }) => {
             className="flex flex-col bg-light-1 rounded-lg py-4 px-7 gap-4 shadow-sm"
           >
             <div className="flex gap-6 items-center">
-              <Image
-                src={post.author.image}
-                width={30}
-                height={30}
-                alt="your avatar"
-                className="rounded-full size-[35px]"
-              />
+              <Link href={`profile/${post.author.id}`}>
+                <Image
+                  src={post.author.image}
+                  width={30}
+                  height={30}
+                  alt="your avatar"
+                  className="rounded-full size-[35px]"
+                />
+              </Link>
               <div className="flex flex-col">
-                <h2 className="text-base-semibold">{post.author.username}</h2>
+                <Link
+                  href={`profile/${post.author.id}`}
+                  className="text-base-semibold"
+                >
+                  {post.author.username}
+                </Link>
                 <p className="text-subtle-medium">
                   {post.createdAt.toDateString()}
                 </p>

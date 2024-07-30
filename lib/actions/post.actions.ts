@@ -26,9 +26,12 @@ export const createPost = async ({
   }
 };
 
-export const getPosts = async () => {
+export const getPosts = async (authorId?: string) => {
   try {
     const posts = await prisma.post.findMany({
+      where: {
+        authorId,
+      },
       include: {
         author: true,
       },
