@@ -10,14 +10,13 @@ model Post {
   id String @id @default(uuid())
   createdAt DateTime @default(now())
   text     String   @db.VarChar(255)
-  published Boolean  @default(false)
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
   likes User[] @relation("likes")
 }
 
 model User {
-  id String @id @default(uuid())
+  id String @id
   username String @unique
   name String
   image String

@@ -10,7 +10,7 @@ export const getUser = async (userId: string) => {
 
     return user;
   } catch (error: any) {
-    throw new Error(`Failed to get user: ${error.message}`);
+    console.log(`Failed to get user: ${error.message}`);
   }
 };
 
@@ -31,6 +31,7 @@ export const upsertUser = async ({
     await prisma.user.upsert({
       where: { id },
       create: {
+        id,
         username: username.toLowerCase(),
         name,
         bio,
@@ -40,6 +41,6 @@ export const upsertUser = async ({
       update: {},
     });
   } catch (error: any) {
-    throw new Error(`Failed to create/update user: ${error.message}`);
+    console.log(`Failed to create/update user: ${error.message}`);
   }
 };
