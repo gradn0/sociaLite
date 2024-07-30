@@ -102,24 +102,3 @@ export const sampleActivity = [
     place: "Talk.js",
   },
 ];
-
-export const samplePosts = [
-  {
-    username: "John Carter",
-    createdAt: "4 hours ago",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
-    Maecenas et ante porttitor, fermentum lectus nec, tincidunt tellus. \
-    Pellentesque eget tincidunt diam. Praesent et pellentesque risus, ut blandit lorem.",
-    likes: "1.2k",
-    comments: [1, 2, 3, 4],
-  },
-  {
-    username: "John Carter",
-    createdAt: "4 hours ago",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
-    Maecenas et ante porttitor, fermentum lectus nec, tincidunt tellus. \
-    Pellentesque eget tincidunt diam. Praesent et pellentesque risus, ut blandit lorem.",
-    likes: "1.2k",
-    comments: [1, 2, 3, 4],
-  },
-];

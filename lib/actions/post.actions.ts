@@ -25,3 +25,19 @@ export const createPost = async ({
     console.log(`Failed to create post: ${error.message}`);
   }
 };
+
+export const getPosts = async () => {
+  try {
+    const posts = await prisma.post.findMany({
+      include: {
+        author: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return posts;
+  } catch (error: any) {
+    console.log(`Failed to get post: ${error.message}`);
+  }
+};

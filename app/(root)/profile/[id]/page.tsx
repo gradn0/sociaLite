@@ -1,4 +1,3 @@
-import PostList from "@/components/PostList";
 import { sampleFriends } from "@/constants";
 import Image from "next/image";
 import React from "react";
@@ -36,7 +35,6 @@ const page = () => {
       </div>
 
       <h1 className="text-heading3-bold mt-6">Posts</h1>
-      <PostList />
     </div>
   );
 };

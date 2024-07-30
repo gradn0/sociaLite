@@ -53,7 +53,10 @@ const CreatePost = ({ userInfo }: { userInfo: User }) => {
 
       <div className="flex gap-8 p-4 justify-between">
         {createPostOptions.map((option) => (
-          <div className="flex gap-2 items-center cursor-pointer">
+          <div
+            key={option.label}
+            className="flex gap-2 items-center cursor-pointer"
+          >
             <Image
               src={option.imgURL}
               width={17}
