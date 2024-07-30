@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "fer-uig.glitch.me",
       },
+      {
+        protocol: "https",
+        hostname: "img.clerk.com",
+      },
     ],
   },
 };
