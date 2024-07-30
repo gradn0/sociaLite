@@ -3,6 +3,7 @@ import { getPosts } from "@/lib/actions/post.actions";
 import { getUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const page = async ({ params }: { params: { id: string } }) => {
@@ -39,9 +40,14 @@ const page = async ({ params }: { params: { id: string } }) => {
         </div>
 
         {isOwnProfile ? (
-          <button className="text-dark-1 bg-light-2 w-full py-1.5 rounded-lg max-w-[300px]">
-            Edit Profile
-          </button>
+          <Link
+            href="/profile"
+            className="w-full flex justify-center"
+          >
+            <button className="text-dark-1 bg-light-2 w-full py-1.5 rounded-lg max-w-[300px]">
+              Edit Profile
+            </button>
+          </Link>
         ) : (
           <button className="bg-primary-500 text-light-1 w-full py-1.5 rounded-lg max-w-[300px]">
             Send Friend Request

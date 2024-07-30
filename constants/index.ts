@@ -23,6 +23,12 @@ export const sidebarLinks = [
     label: "Groups",
     background: "#f8c28c",
   },
+  {
+    imgURL: "/assets/profile.svg",
+    route: "/profile",
+    label: "Profile",
+    background: "#e4b3ff",
+  },
 ];
 
 export const createPostOptions = [

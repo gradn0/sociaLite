@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "../prisma";
+import { revalidatePath } from "next/cache";
 
 export const getUser = async (userId: string) => {
   try {
@@ -20,12 +21,14 @@ export const upsertUser = async ({
   name,
   username,
   bio,
+  path,
 }: {
   id: string;
   image: string;
   name: string;
   username: string;
   bio: string;
+  path: string;
 }) => {
   try {
     await prisma.user.upsert({
@@ -38,8 +41,18 @@ export const upsertUser = async ({
         image,
         onboarded: true,
       },
-      update: {},
+      update: {
+        username: username.toLowerCase(),
+        name,
+        bio,
+        image,
+        onboarded: true,
+      },
     });
+
+    if (path === "/profile") {
+      revalidatePath(path);
+    }
   } catch (error: any) {
     console.log(`Failed to create/update user: ${error.message}`);
   }

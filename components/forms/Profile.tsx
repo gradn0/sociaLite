@@ -4,7 +4,7 @@ import { useUploadThing } from "@/lib/uploadthings";
 import { userSchema } from "@/lib/validations/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { MdDriveFolderUpload } from "react-icons/md";
@@ -12,11 +12,12 @@ import { z } from "zod";
 
 interface Props {
   id: string;
-  objectId: string;
+  objectId?: string;
   username: string;
   name: string;
   bio: string;
   image: string;
+  onboarded?: boolean;
 }
 
 const Profile = ({ userInfo }: { userInfo: Props }) => {
@@ -39,6 +40,7 @@ const Profile = ({ userInfo }: { userInfo: Props }) => {
   const [file, setFile] = useState<File>();
   const { startUpload, isUploading } = useUploadThing("imageUploader");
   const router = useRouter();
+  const pathname = usePathname();
 
   const onSubmit: SubmitHandler<z.infer<typeof userSchema>> = async (
     values
@@ -50,7 +52,7 @@ const Profile = ({ userInfo }: { userInfo: Props }) => {
       const res = await startUpload([file]);
       if (res && res[0].url) values.image = res[0].url;
     }
-    await upsertUser({ ...values, id: userInfo.id });
+    await upsertUser({ ...values, id: userInfo.id, path: pathname });
     router.push("/");
   };
 
