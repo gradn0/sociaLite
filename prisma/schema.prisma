@@ -13,6 +13,9 @@ model Post {
   author    User     @relation("userPost", fields: [authorId], references: [id])
   authorId  String
   likes Like[]
+  parent Post? @relation("postComments", fields: [parentId], references: [id])
+  parentId String?
+  children Post[] @relation("postComments")
 }
 
 model User {

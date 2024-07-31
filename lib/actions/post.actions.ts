@@ -8,18 +8,36 @@ export const createPost = async ({
   authorId,
   text,
   path,
+  parentId,
 }: {
   authorId: string;
   text: string;
   path: string;
+  parentId?: string;
 }) => {
   try {
-    await prisma.post.create({
+    const post = await prisma.post.create({
       data: {
         text,
         authorId,
+        parentId,
       },
     });
+
+    if (parentId) {
+      await prisma.post.update({
+        where: {
+          id: parentId,
+        },
+        data: {
+          children: {
+            connect: {
+              id: post.id,
+            },
+          },
+        },
+      });
+    }
 
     revalidatePath(path);
   } catch (error: any) {
@@ -36,6 +54,7 @@ export const getPosts = async (authorId?: string) => {
       include: {
         author: true,
         likes: true,
+        children: true,
       },
       orderBy: {
         createdAt: "desc",
@@ -60,5 +79,30 @@ export const likePost = async (postId: string, path: string) => {
     revalidatePath(path);
   } catch (error: any) {
     console.log(`Failed to like post: ${error.message}`);
+  }
+};
+
+export const getPost = async (postId: string) => {
+  try {
+    return await prisma.post.findUnique({
+      where: {
+        id: postId,
+      },
+      include: {
+        author: true,
+        likes: true,
+        children: {
+          include: {
+            author: true,
+            likes: true,
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
+        },
+      },
+    });
+  } catch (error: any) {
+    console.log(`Failed to fetch post: ${error.message}`);
   }
 };

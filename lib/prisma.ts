@@ -10,6 +10,6 @@ export const prisma =
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma;
 
-export type PostWithIncludes = Prisma.PostGetPayload<{
-  include: { author: true; likes: true };
+export type PostWithLikesAuthors = Prisma.PostGetPayload<{
+  include: { author: true; likes: true; children: true };
 }>;
