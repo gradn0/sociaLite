@@ -34,7 +34,7 @@ const page = async ({ params }: { params: { id: string } }) => {
           </div>
           <span className="border-r-[1px] border-gray-1"></span>
           <div className="flex flex-col items-center px-2">
-            <h2 className="text-body-bold">200</h2>
+            <h2 className="text-body-bold">{posts?.length}</h2>
             <p className="text-gray-1 text-base-regular">Posts</p>
           </div>
         </div>

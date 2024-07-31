@@ -1,11 +1,15 @@
-import { PostWithAuthor } from "@/lib/prisma";
+"use client";
+import { likePost } from "@/lib/actions/post.actions";
+import { PostWithIncludes } from "@/lib/prisma";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { FaCommentDots, FaHeart } from "react-icons/fa";
 import { IoEllipsisVertical } from "react-icons/io5";
 
-const PostList = ({ posts }: { posts: PostWithAuthor[] | undefined }) => {
+const PostList = ({ posts }: { posts: PostWithIncludes[] | undefined }) => {
+  const pathname = usePathname();
   if (!posts || posts.length < 1)
     return <p className="text-gray-1 mx-auto">No Posts</p>;
 
@@ -45,8 +49,11 @@ const PostList = ({ posts }: { posts: PostWithAuthor[] | undefined }) => {
 
             <div className="flex gap-7 text-small-regular">
               <div className="flex items-center gap-1 cursor-pointer">
-                <FaHeart color="#f00000" />
-                <p>1.2k</p>
+                <FaHeart
+                  color="#f00000"
+                  onClick={async () => await likePost(post.id, pathname)}
+                />
+                <p>{post.likes.length}</p>
               </div>
               <div className="flex items-center gap-1 cursor-pointer">
                 <FaCommentDots color="hsl(210,100%,47%)" />
