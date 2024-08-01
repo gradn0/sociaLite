@@ -15,7 +15,7 @@ const PublicProfile = ({
   postCount: number;
   clerkId: string;
 }) => {
-  const isOwnProfile = user.id === user.id;
+  const isOwnProfile = clerkId === user.id;
   const isRequestSent = !!user.relationshipsRecieved.find(
     (relationship) => relationship.senderId === clerkId
   );
