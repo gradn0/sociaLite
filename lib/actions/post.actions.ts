@@ -50,6 +50,7 @@ export const getPosts = async (authorId?: string) => {
     const posts = await prisma.post.findMany({
       where: {
         authorId,
+        parentId: null,
       },
       include: {
         author: true,

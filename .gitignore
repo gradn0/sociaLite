@@ -19,6 +19,7 @@
 # misc
 .DS_Store
 *.pem
+notes.txt
 
 # debug
 npm-debug.log*
@@ -36,3 +37,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 imgs
+
