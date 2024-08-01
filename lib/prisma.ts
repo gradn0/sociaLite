@@ -13,3 +13,7 @@ if (process.env.NODE_ENV !== "production") globalForPrisma.prisma;
 export type PostWithLikesAuthors = Prisma.PostGetPayload<{
   include: { author: true; likes: true; children: true };
 }>;
+
+export type UserRelationships = Prisma.UserGetPayload<{
+  include: { relationshipsRecieved: true; relationshipsSent: true };
+}>;

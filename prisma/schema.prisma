@@ -27,6 +27,8 @@ model User {
   onboarded Boolean @default(false)
   posts Post[] @relation("userPost")
   likes Like[]
+  relationshipsSent Relationship[] @relation("relationshipSender")
+  relationshipsRecieved Relationship[] @relation("relationshipReciever")
 }
 
 model Like {
@@ -36,4 +38,18 @@ model Like {
   userId String
 
   @@id([postId, userId])
+}
+
+model Relationship {
+  @@id([senderId, recieverId])
+  sender User @relation("relationshipSender", fields: [senderId], references: [id])
+  senderId String
+  reciever User @relation("relationshipReciever", fields: [recieverId], references: [id])
+  recieverId String
+  status RelationshipStatus
+}
+
+enum RelationshipStatus {
+  FRIENDS
+  FRIEND_REQUESTED
 }

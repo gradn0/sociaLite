@@ -1,9 +1,8 @@
 import CreateComment from "@/components/forms/CreateComment";
 import PostCard from "@/components/PostCard";
-import Comment from "@/components/ui/Comment";
+import Comment from "@/components/Comment";
 import { getPost } from "@/lib/actions/post.actions";
 import { getUser } from "@/lib/actions/user.actions";
-import { PostWithLikesAuthors } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
 
 export const page = async ({ params }: { params: { id: string } }) => {
