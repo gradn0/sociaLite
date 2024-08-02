@@ -29,6 +29,8 @@ model User {
   likes Like[]
   relationshipsSent Relationship[] @relation("relationshipSender")
   relationshipsRecieved Relationship[] @relation("relationshipReciever")
+  friends User[] @relation("friends")
+  friendsRelation User[] @relation("friends")
 }
 
 model Like {

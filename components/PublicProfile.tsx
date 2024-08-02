@@ -2,26 +2,33 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { UserRelationships } from "@/lib/prisma";
+import { UserWithSocials } from "@/lib/prisma";
 import { createFriendRequest } from "@/lib/actions/relationship.actions";
 import { usePathname } from "next/navigation";
+import FriendRequest from "./ui/FriendRequest";
 
 const PublicProfile = ({
   user,
   postCount,
   clerkId,
 }: {
-  user: UserRelationships;
+  user: UserWithSocials;
   postCount: number;
   clerkId: string;
 }) => {
   const isOwnProfile = clerkId === user.id;
   const isRequestSent = !!user.relationshipsRecieved.find(
-    (relationship) => relationship.senderId === clerkId
+    (relationship) =>
+      relationship.senderId === clerkId &&
+      relationship.status === "FRIEND_REQUESTED"
   );
   const isRequestRecieved = !!user.relationshipsSent.find(
-    (relationship) => relationship.recieverId === clerkId
+    (relationship) =>
+      relationship.recieverId === clerkId &&
+      relationship.status === "FRIEND_REQUESTED"
   );
+
+  const isFriend = !!user.friends.find((friend) => friend.id === clerkId);
 
   const pathname = usePathname();
 
@@ -39,7 +46,7 @@ const PublicProfile = ({
 
       <div className="flex gap-5 my-7">
         <div className="flex flex-col items-center px-2">
-          <h2 className="text-body-bold">1200</h2>
+          <h2 className="text-body-bold">{user.friends.length}</h2>
           <p className="text-gray-1 text-base-regular">Friends</p>
         </div>
         <span className="border-r-[1px] border-gray-1"></span>
@@ -60,6 +67,10 @@ const PublicProfile = ({
         </Link>
       )}
 
+      {isFriend && (
+        <p className="text-base-medium">You and {user.username} are friends!</p>
+      )}
+
       {isRequestSent && (
         <button className="text-dark-1 bg-light-2 w-full py-1.5 rounded-lg max-w-[300px]">
           Request sent
@@ -67,12 +78,15 @@ const PublicProfile = ({
       )}
 
       {isRequestRecieved && (
-        <button className="text-dark-1 bg-light-2 w-full py-1.5 rounded-lg max-w-[300px]">
-          Request recieved
-        </button>
+        <div className="w-full flex flex-col items-center gap-5">
+          <p className="text-base-medium">
+            {user.username} wants to be friends
+          </p>
+          <FriendRequest senderId={user.id} />
+        </div>
       )}
 
-      {!isOwnProfile && !isRequestSent && !isRequestRecieved && (
+      {!isOwnProfile && !isRequestSent && !isRequestRecieved && !isFriend && (
         <button
           className="bg-primary-500 text-light-1 w-full py-1.5 rounded-lg max-w-[300px]"
           onClick={async () => await createFriendRequest(user.id, pathname)}

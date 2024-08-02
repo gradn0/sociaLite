@@ -14,6 +14,10 @@ export type PostWithLikesAuthors = Prisma.PostGetPayload<{
   include: { author: true; likes: true; children: true };
 }>;
 
-export type UserRelationships = Prisma.UserGetPayload<{
-  include: { relationshipsRecieved: true; relationshipsSent: true };
+export type UserWithSocials = Prisma.UserGetPayload<{
+  include: {
+    relationshipsRecieved: true;
+    relationshipsSent: true;
+    friends: true;
+  };
 }>;

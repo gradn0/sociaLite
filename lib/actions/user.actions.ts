@@ -10,6 +10,7 @@ export const getUser = async (userId: string) => {
       include: {
         relationshipsSent: true,
         relationshipsRecieved: true,
+        friends: true,
       },
     });
 
