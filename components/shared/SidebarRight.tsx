@@ -1,8 +1,14 @@
-import { sampleActivity, sampleFriends } from "@/constants";
+import { sampleActivity } from "@/constants";
 import React from "react";
 import Image from "next/image";
+import { currentUser } from "@clerk/nextjs/server";
+import { getUser } from "@/lib/actions/user.actions";
+import Link from "next/link";
 
-const SidebarRight = () => {
+const SidebarRight = async () => {
+  const clerkUser = await currentUser();
+  if (!clerkUser) return;
+  const user = await getUser(clerkUser.id);
   return (
     <div className="sidebar-right">
       <div className="flex flex-col max-lg:hidden p-1 gap-5">
@@ -35,22 +41,25 @@ const SidebarRight = () => {
       <div className="flex flex-col max-lg:hidden p-1 gap-5">
         <h2 className="text-body-bold">Active Friends</h2>
         <ul className="flex flex-col gap-1">
-          {sampleFriends.map((friend, i) => {
+          {user?.friends.map((friend, i) => {
             return (
-              <div
+              <Link
+                href={`profile/${friend.id}`}
                 key={i}
                 className="flex items-center py-1 gap-3 cursor-pointer relative"
               >
                 <Image
-                  src={`https://fer-uig.glitch.me?uuid=${i}`}
+                  src={friend.image}
                   width={37}
                   height={37}
-                  alt={friend.name}
+                  alt={friend.username}
                   className="rounded-full max-lg:mx-auto"
                 />
                 <span className="size-[0.7em] bg-green-500 rounded-full z-10 absolute bottom-1 left-7 border-2 border-white"></span>
-                <p className="text-dark-1 text-base-medium">{friend.name}</p>
-              </div>
+                <p className="text-dark-1 text-base-medium">
+                  {friend.username}
+                </p>
+              </Link>
             );
           })}
         </ul>
