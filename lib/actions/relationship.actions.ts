@@ -10,7 +10,7 @@ export const createFriendRequest = async (recieverId: string, path: string) => {
     const clerkUser = await currentUser();
     if (!clerkUser) throw new Error("Not authenticated");
 
-    const relationshipExists = await prisma.relationship.findFirst({
+    const requestExists = await prisma.request.findFirst({
       where: {
         OR: [
           {
@@ -25,13 +25,12 @@ export const createFriendRequest = async (recieverId: string, path: string) => {
       },
     });
 
-    if (relationshipExists) throw new Error("Relationship already exists");
+    if (requestExists) throw new Error("Request already exists");
 
-    await prisma.relationship.create({
+    await prisma.request.create({
       data: {
         senderId: clerkUser.id,
         recieverId,
-        status: "FRIEND_REQUESTED",
       },
     });
     revalidatePath(path);
@@ -52,7 +51,7 @@ export const respondToFriendRequest = async (
     if (!clerkUser) throw new Error("Not authenticated");
 
     if (response === "ACCEPT") {
-      await prisma.relationship.delete({
+      await prisma.request.delete({
         where: {
           senderId_recieverId: {
             senderId,
@@ -64,7 +63,7 @@ export const respondToFriendRequest = async (
       await addFriend(clerkUser.id, senderId);
       await addFriend(senderId, clerkUser.id);
     } else {
-      await prisma.relationship.delete({
+      await prisma.request.delete({
         where: {
           senderId_recieverId: {
             senderId,

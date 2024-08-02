@@ -17,15 +17,11 @@ const PublicProfile = ({
   clerkId: string;
 }) => {
   const isOwnProfile = clerkId === user.id;
-  const isRequestSent = !!user.relationshipsRecieved.find(
-    (relationship) =>
-      relationship.senderId === clerkId &&
-      relationship.status === "FRIEND_REQUESTED"
+  const isRequestSent = !!user.requestsRecieved.find(
+    (request) => request.senderId === clerkId
   );
-  const isRequestRecieved = !!user.relationshipsSent.find(
-    (relationship) =>
-      relationship.recieverId === clerkId &&
-      relationship.status === "FRIEND_REQUESTED"
+  const isRequestRecieved = !!user.requestsSent.find(
+    (request) => request.recieverId === clerkId
   );
 
   const isFriend = !!user.friends.find((friend) => friend.id === clerkId);
