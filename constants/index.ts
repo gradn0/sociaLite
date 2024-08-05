@@ -46,57 +46,6 @@ export const createPostOptions = [
   },
 ];
 
-export const sampleGroups = [
-  {
-    name: "The nerd head",
-  },
-  {
-    name: "Take a trip",
-  },
-  {
-    name: "Papa Ki Pari",
-  },
-  {
-    name: "College Friends",
-  },
-  {
-    name: "My Dream House",
-  },
-];
-
-export const sampleFriends = [
-  {
-    name: "Jaden Chance",
-    friends: 400,
-    posts: 90,
-    bio: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-  },
-  {
-    name: "Arezki Williams",
-  },
-  {
-    name: "Rose James",
-  },
-  {
-    name: "Tman Mats",
-  },
-  {
-    name: "Alex Andrew",
-  },
-  {
-    name: "Kaixi Cark",
-  },
-  {
-    name: "Hamid Oskip",
-  },
-  {
-    name: "Serena Lewis",
-  },
-  {
-    name: "April Sky",
-  },
-];
-
 export const sampleActivity = [
   {
     name: "Hally Harolds",

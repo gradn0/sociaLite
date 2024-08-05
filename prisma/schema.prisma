@@ -16,6 +16,8 @@ model Post {
   parent Post? @relation("postComments", fields: [parentId], references: [id])
   parentId String?
   children Post[] @relation("postComments")
+  group Group? @relation(fields: [groupId], references: [id])
+  groupId String?
 }
 
 model User {
@@ -31,6 +33,7 @@ model User {
   requestsRecieved Request[] @relation("requestsRecieved")
   friends User[] @relation("friends")
   friendsRelation User[] @relation("friends")
+  groups Group[]
 }
 
 model Like {
@@ -48,4 +51,14 @@ model Request {
   senderId String
   reciever User @relation("requestsRecieved", fields: [recieverId], references: [id])
   recieverId String
+}
+
+model Group {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  name String
+  members User[]
+  posts Post[]
+  image String?
+  bio String
 }

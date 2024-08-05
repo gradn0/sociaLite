@@ -1,6 +1,6 @@
 "use client";
 
-import { sampleGroups, sidebarLinks } from "@/constants";
+import { sidebarLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -41,7 +41,7 @@ const SidebarLeft = () => {
         </ul>
       </nav>
 
-      <div className="flex flex-col max-lg:hidden p-1 gap-5">
+      {/* <div className="flex flex-col max-lg:hidden p-1 gap-5">
         <h2 className="text-body-bold">My Groups</h2>
         <ul className="flex flex-col gap-1">
           {sampleGroups.map((group, i) => {
@@ -62,7 +62,7 @@ const SidebarLeft = () => {
             );
           })}
         </ul>
-      </div>
+      </div> */}
     </section>
   );
 };

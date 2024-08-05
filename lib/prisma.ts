@@ -21,3 +21,13 @@ export type UserWithSocials = Prisma.UserGetPayload<{
     friends: true;
   };
 }>;
+
+export type GroupsWithMembers = Prisma.UserGetPayload<{
+  select: {
+    groups: {
+      include: {
+        members: true;
+      };
+    };
+  };
+}>;
