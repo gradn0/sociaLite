@@ -8,6 +8,7 @@ const UserList = ({ users }: { users: User[] }) => {
     <ul className="flex flex-col gap-3">
       {users.map((user) => (
         <Link
+          key={user.id}
           href={`/profile/${user.id}`}
           className="flex items-center bg-light-1 rounded-lg py-4 px-7 gap-4 shadow-sm"
         >

@@ -9,11 +9,13 @@ export const createPost = async ({
   text,
   path,
   parentId,
+  groupId,
 }: {
   authorId: string;
   text: string;
   path: string;
   parentId?: string;
+  groupId?: string;
 }) => {
   try {
     const post = await prisma.post.create({
@@ -21,6 +23,7 @@ export const createPost = async ({
         text,
         authorId,
         parentId,
+        groupId,
       },
     });
 
@@ -51,6 +54,7 @@ export const getPosts = async (authorId?: string) => {
       where: {
         authorId,
         parentId: null,
+        groupId: null,
       },
       include: {
         author: true,

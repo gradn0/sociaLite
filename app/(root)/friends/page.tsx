@@ -1,11 +1,8 @@
 import UserList from "@/components/UserList";
-import { getUser } from "@/lib/actions/user.actions";
-import { currentUser } from "@clerk/nextjs/server";
+import { getLoggedInUser, getUser } from "@/lib/actions/user.actions";
 
 const page = async () => {
-  const clerkUser = await currentUser();
-  if (!clerkUser) return;
-  const user = await getUser(clerkUser.id);
+  const user = await getLoggedInUser();
   if (!user) return;
   return (
     <div className="main-content">

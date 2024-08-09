@@ -1,15 +1,11 @@
 import CreatePost from "@/components/forms/CreatePost";
 import PostList from "@/components/PostList";
 import { getPosts } from "@/lib/actions/post.actions";
-import { getUser } from "@/lib/actions/user.actions";
-import { currentUser } from "@clerk/nextjs/server";
+import { getLoggedInUser, getUser } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
 
 const page = async () => {
-  const clerkUser = await currentUser();
-  if (!clerkUser) return null;
-
-  const userInfo = await getUser(clerkUser.id);
+  const userInfo = await getLoggedInUser();
 
   if (!userInfo?.onboarded) redirect("/onboarding");
 

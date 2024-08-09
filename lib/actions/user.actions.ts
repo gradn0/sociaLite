@@ -1,7 +1,27 @@
 "use server";
 
+import { currentUser } from "@clerk/nextjs/server";
 import { prisma } from "../prisma";
 import { revalidatePath } from "next/cache";
+
+export const getLoggedInUser = async () => {
+  const clerkUser = await currentUser();
+  if (!clerkUser) throw new Error("Not authenticated");
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: clerkUser?.id },
+      include: {
+        requestsSent: true,
+        requestsRecieved: true,
+        friends: true,
+      },
+    });
+
+    return user;
+  } catch (error: any) {
+    console.log(`Failed to get logged in user: ${error.message}`);
+  }
+};
 
 export const getUser = async (userId: string) => {
   try {

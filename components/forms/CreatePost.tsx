@@ -5,7 +5,7 @@ import { postSchema } from "@/lib/validations/post";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { User } from "@prisma/client";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -22,11 +22,16 @@ const CreatePost = ({ userInfo }: { userInfo: User }) => {
   });
 
   const pathname = usePathname();
+  const params = useParams();
 
   const onSubmit: SubmitHandler<z.infer<typeof postSchema>> = async (
     values
   ) => {
-    await createPost({ ...values, path: pathname });
+    await createPost({
+      ...values,
+      path: pathname,
+      groupId: (params.id as string) ?? undefined,
+    });
     setValue("text", "");
   };
 

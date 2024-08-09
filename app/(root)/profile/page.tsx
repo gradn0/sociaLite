@@ -1,14 +1,9 @@
 import Profile from "@/components/forms/Profile";
-import { getUser } from "@/lib/actions/user.actions";
-import { currentUser } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 import React from "react";
 
 const page = async () => {
-  const clerkUser = await currentUser();
-  if (!clerkUser) redirect("/");
-
-  const userInfo = await getUser(clerkUser.id);
+  const userInfo = await getLoggedInUser();
   if (!userInfo) return;
 
   return (

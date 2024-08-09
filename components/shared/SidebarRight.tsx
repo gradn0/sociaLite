@@ -1,14 +1,11 @@
 import { sampleActivity } from "@/constants";
 import React from "react";
 import Image from "next/image";
-import { currentUser } from "@clerk/nextjs/server";
-import { getUser } from "@/lib/actions/user.actions";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 import Link from "next/link";
 
 const SidebarRight = async () => {
-  const clerkUser = await currentUser();
-  if (!clerkUser) return;
-  const user = await getUser(clerkUser.id);
+  const user = await getLoggedInUser();
   return (
     <div className="sidebar-right">
       <div className="flex flex-col max-lg:hidden p-1 gap-5">
