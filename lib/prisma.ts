@@ -31,3 +31,12 @@ export type GroupsWithMembers = Prisma.UserGetPayload<{
     };
   };
 }>;
+
+export type GroupsDetails = Prisma.GroupGetPayload<{
+  include: {
+    members: true;
+    posts: {
+      include: { author: true; likes: true; children: true };
+    };
+  };
+}>;

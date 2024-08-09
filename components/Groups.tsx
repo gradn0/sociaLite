@@ -4,6 +4,7 @@ import Image from "next/image";
 import { IoMdAdd } from "react-icons/io";
 import Group from "./forms/Group";
 import { GroupsWithMembers } from "@/lib/prisma";
+import Link from "next/link";
 
 const Groups = ({
   groups,
@@ -29,7 +30,10 @@ const Groups = ({
               key={group.id}
               className="flex flex-col bg-light-1 rounded-lg py-4 px-7 gap-4 shadow-sm max-w-[300px]"
             >
-              <div className="flex gap-6 items-center">
+              <Link
+                className="flex gap-6 items-center"
+                href={`/groups/${group.id}`}
+              >
                 <Image
                   src={group.image || "/assets/defaultPhoto.svg"}
                   width={50}
@@ -40,7 +44,7 @@ const Groups = ({
                 <div className="flex flex-col">
                   <h2 className="text-base-semibold">{group.name}</h2>
                 </div>
-              </div>
+              </Link>
               <p className="text-small-regular text-gray-1">{group.bio}</p>
               <ul className="flex">
                 {group.members.map((member) => {

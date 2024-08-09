@@ -14,6 +14,7 @@ export const getGroups = async (userId: string) => {
         groups: {
           include: {
             members: true,
+            posts: true,
           },
         },
       },
@@ -82,5 +83,25 @@ export const upsertGroup = async ({
     revalidatePath(path);
   } catch (error: any) {
     console.log(`Could not create group: ${error.message}`);
+  }
+};
+
+export const getGroup = async (id: string) => {
+  try {
+    return await prisma.group.findUnique({
+      where: { id },
+      include: {
+        members: true,
+        posts: {
+          include: {
+            author: true,
+            likes: true,
+            children: true,
+          },
+        },
+      },
+    });
+  } catch (error: any) {
+    console.log(`Could not fetch group: ${error.message}`);
   }
 };

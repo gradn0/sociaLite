@@ -46,6 +46,12 @@ export const createPostOptions = [
   },
 ];
 
+export const groupTabs = [
+  { label: "Posts", icon: "/assets/posts.svg" },
+  { label: "Members", icon: "/assets/members.svg" },
+  { label: "Requests", icon: "/assets/request.svg" },
+];
+
 export const sampleActivity = [
   {
     name: "Hally Harolds",
