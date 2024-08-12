@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { IoMdAdd } from "react-icons/io";
-import Group from "./forms/Group";
+import GroupForm from "./forms/GroupForm";
 import { GroupsWithMembers } from "@/lib/prisma";
 import Link from "next/link";
 
@@ -23,7 +23,7 @@ const Groups = ({
           />
         </button>
       </div>
-      {groups ? (
+      {groups && groups.groups.length > 0 ? (
         <ul className="flex gap-3 flex-wrap max-sm:justify-center">
           {groups.groups.map((group) => (
             <div
@@ -63,11 +63,11 @@ const Groups = ({
           ))}
         </ul>
       ) : (
-        <p className="text-gray-1">You are not part of any groups yet.</p>
+        <p className="text-gray-1">You are not a member of any groups yet.</p>
       )}
       {modalOpen && (
         <div className="absolute rounded-lg shadow-sm flex gap-6 items-center top-[10%] left-1/2 -translate-x-1/2 w-[20em]">
-          <Group onComplete={() => setModalOpen(false)} />
+          <GroupForm onComplete={() => setModalOpen(false)} />
         </div>
       )}
     </div>

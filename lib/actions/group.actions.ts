@@ -52,6 +52,7 @@ export const upsertGroup = async ({
           name,
           bio,
           image,
+          adminId: clerkUser.id,
           members: {
             connect: memberIds.map((id) => ({ id })),
           },
@@ -99,6 +100,7 @@ export const getGroup = async (id: string) => {
             children: true,
           },
         },
+        requests: true,
       },
     });
   } catch (error: any) {

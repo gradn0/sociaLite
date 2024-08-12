@@ -11,7 +11,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { MdDriveFolderUpload } from "react-icons/md";
 import { z } from "zod";
 
-const Group = ({
+const GroupForm = ({
   group,
   onComplete,
 }: {
@@ -152,7 +152,8 @@ const Group = ({
           }`}
           disabled={isUploading || isLoading}
         >
-          {isUploading || isLoading ? "Creating..." : "Create"}
+          {!group && (isUploading || isLoading ? "Creating..." : "Create")}
+          {group && (isUploading || isLoading ? "Updating..." : "Update")}
         </button>
         <button
           type="button"
@@ -167,4 +168,4 @@ const Group = ({
   );
 };
 
-export default Group;
+export default GroupForm;
