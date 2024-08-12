@@ -20,7 +20,7 @@ const SidebarLeft = () => {
               <Link
                 key={link.label}
                 href={link.route}
-                className={`flex items-center gap-4 w-full rounded-lg p-1 ${
+                className={`flex items-center gap-4 w-full rounded-lg p-1 lg:pl-4 lg:pr-10 ${
                   isActive && "bg-gray-300"
                 }`}
               >

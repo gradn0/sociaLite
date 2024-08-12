@@ -13,7 +13,7 @@ const Groups = ({
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   return (
-    <div className="main-content">
+    <div className="main-content relative">
       <div className="flex gap-4 items-center">
         <h1 className="text-heading3-bold">Groups</h1>
         <button className="p-1.5 bg-primary-500 rounded">
@@ -24,11 +24,11 @@ const Groups = ({
         </button>
       </div>
       {groups ? (
-        <ul className="flex flex-col gap-3">
+        <ul className="flex gap-3 flex-wrap max-sm:justify-center">
           {groups.groups.map((group) => (
             <div
               key={group.id}
-              className="flex flex-col bg-light-1 rounded-lg py-4 px-7 gap-4 shadow-sm max-w-[300px]"
+              className="flex flex-col bg-light-1 rounded-lg py-4 px-7 gap-4 shadow-sm max-w-[300px] w-[20em]"
             >
               <Link
                 className="flex gap-6 items-center"
@@ -46,18 +46,17 @@ const Groups = ({
                 </div>
               </Link>
               <p className="text-small-regular text-gray-1">{group.bio}</p>
-              <ul className="flex">
+              <ul className="flex mt-auto">
                 {group.members.map((member) => {
-                  if (member.id !== "s")
-                    return (
-                      <Image
-                        src={member.image || "/assets/defaultProfile.svg"}
-                        width={50}
-                        height={50}
-                        alt={member.name}
-                        className="rounded-full size-[20px]"
-                      />
-                    );
+                  return (
+                    <Image
+                      src={member.image || "/assets/defaultProfile.svg"}
+                      width={50}
+                      height={50}
+                      alt={member.name}
+                      className="rounded-full size-[20px]"
+                    />
+                  );
                 })}
               </ul>
             </div>
@@ -67,7 +66,7 @@ const Groups = ({
         <p className="text-gray-1">You are not part of any groups yet.</p>
       )}
       {modalOpen && (
-        <div className="absolute bg-light-1 rounded-lg py-2 px-7 shadow-sm flex gap-6 items-center top-[20%] left-[40%]">
+        <div className="absolute rounded-lg shadow-sm flex gap-6 items-center top-[10%] left-1/2 -translate-x-1/2 w-[20em]">
           <Group onComplete={() => setModalOpen(false)} />
         </div>
       )}

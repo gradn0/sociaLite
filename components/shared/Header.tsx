@@ -1,9 +1,9 @@
 import React from "react";
-import Searchbar from "../ui/Searchbar";
 import Link from "next/link";
 import Image from "next/image";
 import { SignedIn, SignOutButton, UserButton } from "@clerk/nextjs";
 import { RiLogoutCircleLine } from "react-icons/ri";
+import Searchbar from "../forms/Searchbar";
 
 const Header = () => {
   return (
