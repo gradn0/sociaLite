@@ -71,7 +71,7 @@ const Searchbar = () => {
                     width={27}
                     height={27}
                     alt="user avatar"
-                    className="rounded-full max-lg:mx-auto"
+                    className="rounded-full"
                   />
                   <p className="text-base-medium">{user.username}</p>
                 </Link>
@@ -85,14 +85,14 @@ const Searchbar = () => {
                   key={group.id}
                   onClick={() => handleClose()}
                   href={`/groups/${group.id}`}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 justify-start"
                 >
                   <Image
                     src={group.image || "/assets/defaultPhoto.svg"}
                     width={27}
                     height={27}
-                    alt="user avatar"
-                    className="rounded-full max-lg:mx-auto"
+                    alt="group avatar"
+                    className="rounded-full"
                   />
                   <p className="text-base-medium">{group.name}</p>
                 </Link>
