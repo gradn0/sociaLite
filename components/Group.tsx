@@ -4,11 +4,16 @@ import Image from "next/image";
 import { groupTabs } from "@/constants";
 import PostList from "./PostList";
 import { GroupsDetails } from "@/lib/prisma";
-import UserList from "./UserList";
 import { User } from "@prisma/client";
 import CreatePost from "./forms/CreatePost";
 import { FaEdit } from "react-icons/fa";
 import GroupForm from "./forms/GroupForm";
+import {
+  createMembershipRequest,
+  respondToMembershipRequest,
+} from "@/lib/actions/group.actions";
+import { usePathname } from "next/navigation";
+import UserCard from "./UserCard";
 
 const Group = ({
   group,
@@ -21,7 +26,11 @@ const Group = ({
   const isAdmin = group?.adminId === user?.id;
   const isMember =
     user && group?.members.find((member) => member.id === user.id);
+  const isMembershipRequested = group?.requests.find(
+    (user) => user.id === user.id
+  );
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const pathname = usePathname();
 
   if (!group) return <p className="text-gray-1">Group not found</p>;
   return (
@@ -47,7 +56,7 @@ const Group = ({
         {isMember && (
           <ul className="flex justify-around w-full mt-10 gap-5">
             {groupTabs.map((tab, i) => {
-              if (tab.label === "Requests" && !isAdmin) return;
+              if (tab.label === "Requests" && !isAdmin) return null;
               return (
                 <div
                   key={tab.label}
@@ -72,23 +81,67 @@ const Group = ({
         )}
       </div>
 
-      {!isMember && (
+      {!isMember && user && (
         <div className="flex flex-col items-center gap-4">
           <p className="text-gray-1">You are not a member of this group</p>
-          <button className="bg-primary-500 text-light-1 w-full py-1.5 rounded-lg max-w-[300px]">
-            Send membership request
-          </button>
+          {isMembershipRequested ? (
+            <button className="text-dark-1 bg-light-2 w-full py-1.5 rounded-lg max-w-[300px]">
+              Request sent
+            </button>
+          ) : (
+            <button
+              onClick={async () =>
+                await createMembershipRequest({
+                  userId: user.id,
+                  groupId: group.id,
+                  path: pathname,
+                })
+              }
+              className="bg-primary-500 text-light-1 w-full py-1.5 rounded-lg max-w-[300px]"
+            >
+              Send membership request
+            </button>
+          )}
         </div>
       )}
 
       {activeTab === 0 && isMember && (
         <div className="flex flex-col gap-4">
-          {user && <CreatePost userInfo={user} />}
+          <CreatePost userInfo={user} />
           <PostList posts={group.posts} />
         </div>
       )}
-      {activeTab === 1 && <UserList users={group.members} />}
-      {isAdmin && activeTab === 2}
+      {activeTab === 1 &&
+        group.members.map((member) => (
+          <UserCard
+            user={member}
+            type="normal"
+          />
+        ))}
+      {isAdmin &&
+        activeTab === 2 &&
+        group.requests.map((user) => (
+          <UserCard
+            user={user}
+            type="request"
+            onAccept={async () =>
+              await respondToMembershipRequest({
+                groupId: group.id,
+                senderId: user.id,
+                path: pathname,
+                response: "ACCEPT",
+              })
+            }
+            onDeny={async () =>
+              await respondToMembershipRequest({
+                groupId: group.id,
+                senderId: user.id,
+                path: pathname,
+                response: "DENY",
+              })
+            }
+          />
+        ))}
       {editModalOpen && (
         <div className="absolute rounded-lg shadow-sm flex gap-6 items-center top-[10%] left-1/2 -translate-x-1/2 w-[20em]">
           <GroupForm

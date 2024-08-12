@@ -39,12 +39,10 @@ export const createFriendRequest = async (recieverId: string, path: string) => {
   }
 };
 
-type FriendRequestResponse = "ACCEPT" | "DENY";
-
 export const respondToFriendRequest = async (
   senderId: string,
   path: string,
-  response: FriendRequestResponse
+  response: TResponseToRequest
 ) => {
   try {
     const clerkUser = await currentUser();
@@ -75,6 +73,6 @@ export const respondToFriendRequest = async (
 
     revalidatePath(path);
   } catch (error: any) {
-    console.log(`Failed to create friend request: ${error.message}`);
+    console.log(`Failed to accept/deny friend request: ${error.message}`);
   }
 };

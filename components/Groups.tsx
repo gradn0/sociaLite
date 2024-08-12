@@ -47,14 +47,16 @@ const Groups = ({
               </Link>
               <p className="text-small-regular text-gray-1">{group.bio}</p>
               <ul className="flex mt-auto">
-                {group.members.map((member) => {
+                {group.members.map((member, i) => {
                   return (
                     <Image
                       src={member.image || "/assets/defaultProfile.svg"}
                       width={50}
                       height={50}
                       alt={member.name}
-                      className="rounded-full size-[20px]"
+                      className={`rounded-full size-[23px] bg-light-1 p-[2px] ${
+                        i > 0 && "-translate-x-2"
+                      }`}
                     />
                   );
                 })}

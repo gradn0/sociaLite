@@ -107,3 +107,80 @@ export const getGroup = async (id: string) => {
     console.log(`Could not fetch group: ${error.message}`);
   }
 };
+
+export const createMembershipRequest = async ({
+  userId,
+  groupId,
+  path,
+}: {
+  userId: string;
+  groupId: string;
+  path: string;
+}) => {
+  try {
+    await prisma.group.update({
+      where: {
+        id: groupId,
+      },
+      data: {
+        requests: {
+          connect: {
+            id: userId,
+          },
+        },
+      },
+    });
+    revalidatePath(path);
+  } catch (error: any) {
+    console.log(`Could not send membership request: ${error.message}`);
+  }
+};
+
+export const respondToMembershipRequest = async ({
+  groupId,
+  senderId,
+  path,
+  response,
+}: {
+  groupId: string;
+  senderId: string;
+  path: string;
+  response: TResponseToRequest;
+}) => {
+  try {
+    const clerkUser = await currentUser();
+    if (!clerkUser) throw new Error("Not authenticated");
+
+    if (response === "ACCEPT") {
+      await prisma.group.update({
+        where: {
+          id: groupId,
+        },
+        data: {
+          members: {
+            connect: {
+              id: senderId,
+            },
+          },
+        },
+      });
+    }
+
+    await prisma.group.update({
+      where: {
+        id: groupId,
+      },
+      data: {
+        requests: {
+          disconnect: {
+            id: senderId,
+          },
+        },
+      },
+    });
+
+    revalidatePath(path);
+  } catch (error: any) {
+    console.log(`Could not send membership request: ${error.message}`);
+  }
+};
