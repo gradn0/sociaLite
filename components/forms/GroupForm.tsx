@@ -8,7 +8,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { MdDriveFolderUpload } from "react-icons/md";
 import { z } from "zod";
 
 const GroupForm = ({
@@ -102,10 +101,6 @@ const GroupForm = ({
           htmlFor="file-upload"
           className="flex items-center gap-2 bg-primary-500 px-2 py-1 rounded text-light-1 cursor-pointer"
         >
-          <MdDriveFolderUpload
-            size={25}
-            color="white"
-          />
           Change
         </label>
 

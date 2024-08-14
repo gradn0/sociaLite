@@ -184,3 +184,31 @@ export const respondToMembershipRequest = async ({
     console.log(`Could not send membership request: ${error.message}`);
   }
 };
+
+export const removeMember = async ({
+  userId,
+  groupId,
+  path,
+}: {
+  userId: string;
+  groupId: string;
+  path: string;
+}) => {
+  try {
+    await prisma.group.update({
+      where: {
+        id: groupId,
+      },
+      data: {
+        members: {
+          disconnect: {
+            id: userId,
+          },
+        },
+      },
+    });
+    revalidatePath(path);
+  } catch (error: any) {
+    console.log(`Could not send membership request: ${error.message}`);
+  }
+};

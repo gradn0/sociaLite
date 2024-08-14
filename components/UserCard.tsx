@@ -6,24 +6,26 @@ import { IoMdClose } from "react-icons/io";
 import { TiTick } from "react-icons/ti";
 import { useRouter } from "next/navigation";
 
-type TCardType = "normal" | "request";
+type TCardType = "normal" | "request" | "member";
 
 const UserCard = ({
   user,
   type,
   onAccept,
   onDeny,
+  onRemove,
 }: {
   user: User;
   type: TCardType;
   onAccept?: () => void;
   onDeny?: () => void;
+  onRemove?: () => void;
 }) => {
   const router = useRouter();
   return (
     <div
       key={user.id}
-      className="bg-light-1 rounded-lg py-4 px-7 shadow-sm flex"
+      className="bg-light-1 rounded-lg py-4 px-7 shadow-sm flex items-center"
     >
       <span className="cursor-pointer flex items-center gap-4">
         <Image
@@ -54,6 +56,14 @@ const UserCard = ({
             Deny
           </button>
         </div>
+      )}
+      {type === "member" && (
+        <p
+          onClick={onRemove}
+          className="text-subtle-medium ml-auto cursor-pointer text-red-600"
+        >
+          Remove
+        </p>
       )}
     </div>
   );

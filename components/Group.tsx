@@ -10,6 +10,7 @@ import { FaEdit } from "react-icons/fa";
 import GroupForm from "./forms/GroupForm";
 import {
   createMembershipRequest,
+  removeMember,
   respondToMembershipRequest,
 } from "@/lib/actions/group.actions";
 import { usePathname } from "next/navigation";
@@ -111,13 +112,22 @@ const Group = ({
           <PostList posts={group.posts} />
         </div>
       )}
+
       {activeTab === 1 &&
         group.members.map((member) => (
           <UserCard
             user={member}
-            type="normal"
+            type={isAdmin && member.id !== user?.id ? "member" : "normal"}
+            onRemove={async () =>
+              await removeMember({
+                userId: member.id,
+                groupId: group.id,
+                path: pathname,
+              })
+            }
           />
         ))}
+
       {isAdmin &&
         activeTab === 2 &&
         group.requests.map((user) => (
@@ -142,6 +152,7 @@ const Group = ({
             }
           />
         ))}
+
       {editModalOpen && (
         <div className="absolute rounded-lg shadow-sm flex gap-6 items-center top-[10%] left-1/2 -translate-x-1/2 w-[20em]">
           <GroupForm
