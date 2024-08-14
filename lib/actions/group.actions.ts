@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { prisma } from "../prisma";
+import prisma from "../prisma";
 import { currentUser } from "@clerk/nextjs/server";
 
 export const getGroups = async (userId: string) => {

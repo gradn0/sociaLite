@@ -1,7 +1,7 @@
 "use server";
 
 import { currentUser } from "@clerk/nextjs/server";
-import { prisma } from "../prisma";
+import prisma from "../prisma";
 import { revalidatePath } from "next/cache";
 import { addFriend } from "../queries/user.queries";
 
