@@ -4,30 +4,34 @@ import Image from "next/image";
 import { User } from "@prisma/client";
 import { IoMdClose } from "react-icons/io";
 import { TiTick } from "react-icons/ti";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type TCardType = "normal" | "request" | "member";
 
 const UserCard = ({
   user,
   type,
+  actionText,
   onAccept,
   onDeny,
   onRemove,
 }: {
   user: User;
   type: TCardType;
+  actionText?: string;
   onAccept?: () => void;
   onDeny?: () => void;
   onRemove?: () => void;
 }) => {
-  const router = useRouter();
   return (
     <div
       key={user.id}
       className="bg-light-1 rounded-lg py-4 px-7 shadow-sm flex items-center"
     >
-      <span className="cursor-pointer flex items-center gap-4">
+      <Link
+        href={`/profile/${user.id}`}
+        className="cursor-pointer flex items-center gap-4"
+      >
         <Image
           src={user.image}
           width={30}
@@ -36,11 +40,15 @@ const UserCard = ({
           className="rounded-full size-[35px]"
         />
         <div className="flex flex-col">
-          <h2 className="text-base-semibold">{user.username}</h2>
+          <h2></h2>
+          <p className="text-base-regular">
+            <span className="text-base-semibold">{user.username} </span>
+            {actionText}
+          </p>
         </div>
-      </span>
+      </Link>
       {type === "request" && (
-        <div className="flex w-1/2 justify-center gap-2 ml-auto">
+        <div className="flex w-1/3 justify-center gap-2 ml-auto">
           <button
             onClick={onAccept}
             className="text-light-1 bg-primary-500 w-full py-1.5 rounded-lg max-w-[300px] flex items-center justify-center gap-2"

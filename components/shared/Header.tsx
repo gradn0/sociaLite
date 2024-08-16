@@ -29,7 +29,7 @@ const Header = () => {
           <SignOutButton>
             <RiLogoutCircleLine
               size={20}
-              className="md:hidden"
+              className="md:hidden cursor-pointer"
             />
           </SignOutButton>
         </div>

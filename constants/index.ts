@@ -51,15 +51,3 @@ export const groupTabs = [
   { label: "Members", icon: "/assets/members.svg" },
   { label: "Requests", icon: "/assets/request.svg" },
 ];
-
-export const sampleActivity = [
-  {
-    name: "Hally Harolds",
-    action: "Sent you a friend request",
-  },
-  {
-    name: "Alex Kai",
-    action: "Added a photo in",
-    place: "Talk.js",
-  },
-];

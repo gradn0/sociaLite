@@ -1,24 +1,11 @@
-import UserCard from "@/components/UserCard";
+import Friends from "@/components/Friends";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 
 const page = async () => {
   const user = await getLoggedInUser();
+
   if (!user) return;
-  return (
-    <div className="main-content">
-      <h1 className="text-heading3-bold">Friends</h1>
-      {user.friends.length > 0 ? (
-        user.friends.map((friend) => (
-          <UserCard
-            user={friend}
-            type="normal"
-          />
-        ))
-      ) : (
-        <p className="text-gray-1">You don't have any friends yet</p>
-      )}
-    </div>
-  );
+  return <Friends user={user} />;
 };
 
 export default page;

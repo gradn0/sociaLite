@@ -12,7 +12,11 @@ export const getLoggedInUser = async () => {
       where: { id: clerkUser?.id },
       include: {
         requestsSent: true,
-        requestsRecieved: true,
+        requestsRecieved: {
+          include: {
+            sender: true,
+          },
+        },
         friends: true,
       },
     });

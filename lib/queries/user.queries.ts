@@ -1,4 +1,4 @@
-import { prisma } from "../prisma";
+import prisma from "../prisma";
 
 export const addFriend = async (userId: string, newFriendId: string) => {
   await prisma.user.update({

@@ -76,3 +76,43 @@ export const respondToFriendRequest = async (
     console.log(`Failed to accept/deny friend request: ${error.message}`);
   }
 };
+
+export const removeFriend = async ({
+  userId,
+  friendId,
+  path,
+}: {
+  userId: string;
+  friendId: string;
+  path: string;
+}) => {
+  try {
+    await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        friends: {
+          disconnect: {
+            id: friendId,
+          },
+        },
+      },
+    });
+    await prisma.user.update({
+      where: {
+        id: friendId,
+      },
+      data: {
+        friends: {
+          disconnect: {
+            id: userId,
+          },
+        },
+      },
+    });
+    revalidatePath(path);
+  } catch (error: any) {
+    console.log(`Failed to remove friend: ${error.message}`);
+  }
+};
