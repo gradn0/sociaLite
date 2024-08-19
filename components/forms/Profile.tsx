@@ -86,7 +86,7 @@ const Profile = ({ userInfo }: { userInfo: Props }) => {
             width={87}
             height={87}
             alt="user avatar"
-            className="rounded-full max-lg:mx-auto"
+            className="rounded-full max-lg:mx-auto object-cover size-[87px]"
           />
         ) : (
           <Image

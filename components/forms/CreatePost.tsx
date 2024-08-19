@@ -74,10 +74,10 @@ const CreatePost = ({ userInfo }: { userInfo: User }) => {
       <div className="flex gap-6 border-b border-grey p-4 items-center">
         <Image
           src={userInfo.image}
-          width={44}
-          height={44}
+          width={40}
+          height={40}
           alt="your avatar"
-          className="rounded-full"
+          className="rounded-full object-contain size-[47px]"
         />
         <input
           {...register("text")}

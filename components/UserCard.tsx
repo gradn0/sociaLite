@@ -37,7 +37,7 @@ const UserCard = ({
           width={30}
           height={30}
           alt={user.username}
-          className="rounded-full size-[35px]"
+          className="rounded-full size-[35px] object-contain"
         />
         <div className="flex flex-col">
           <h2></h2>
