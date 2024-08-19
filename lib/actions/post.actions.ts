@@ -7,12 +7,14 @@ import { currentUser } from "@clerk/nextjs/server";
 export const createPost = async ({
   authorId,
   text,
+  image,
   path,
   parentId,
   groupId,
 }: {
   authorId: string;
   text: string;
+  image?: string;
   path: string;
   parentId?: string;
   groupId?: string;
@@ -21,6 +23,7 @@ export const createPost = async ({
     const post = await prisma.post.create({
       data: {
         text,
+        image,
         authorId,
         parentId,
         groupId,

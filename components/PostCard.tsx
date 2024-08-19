@@ -35,6 +35,16 @@ const PostCard = ({ post }: { post: PostWithLikesAuthors }) => {
       </div>
 
       <p className="max-w-[55ch] text-base-regular">{post.text}</p>
+      {post.image && (
+        <Link href={post.image}>
+          <Image
+            src={post.image}
+            width={350}
+            height={350}
+            alt="attached image"
+          />
+        </Link>
+      )}
 
       <div className="flex gap-7 text-small-regular">
         <div className="flex items-center gap-1 cursor-pointer">

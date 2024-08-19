@@ -18,6 +18,7 @@ model Post {
   children Post[] @relation("postComments")
   group Group? @relation(fields: [groupId], references: [id])
   groupId String?
+  image String?
 }
 
 model User {
