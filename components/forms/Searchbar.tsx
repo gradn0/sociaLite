@@ -35,9 +35,9 @@ const Searchbar = () => {
   };
 
   return (
-    <div className="flex flex-col relative">
+    <div className="flex flex-col relative max-w-[30em]">
       <form
-        className="text-input hidden md:flex lg:w-[30em] gap-3 items-center"
+        className="text-input gap-3 items-center flex"
         onSubmit={handleSubmit}
       >
         <IoSearch />
@@ -54,7 +54,7 @@ const Searchbar = () => {
       {resultsOpen && (
         <div
           ref={resultsRef}
-          className="absolute bg-light-1 top-full left-0 w-full mt-2 p-4 rounded shadow z-20"
+          className="absolute bg-light-1 top-full left-0 w-full mt-2 p-4 rounded shadow z-20 max-w-[30em]"
         >
           <p className="text-gray-1 text-small-medium mb-3">Users</p>
           <ul className="flex flex-col gap-2">

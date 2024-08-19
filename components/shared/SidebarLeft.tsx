@@ -22,7 +22,7 @@ const SidebarLeft = () => {
                 href={link.route}
                 className={`flex items-center gap-4 w-full rounded-lg p-1 lg:pl-4 lg:pr-10 ${
                   isActive && "bg-gray-300"
-                }`}
+                } ${link.label === "Search" && "md:hidden"}`}
               >
                 <Image
                   src={link.imgURL}
@@ -40,29 +40,6 @@ const SidebarLeft = () => {
           })}
         </ul>
       </nav>
-
-      {/* <div className="flex flex-col max-lg:hidden p-1 gap-5">
-        <h2 className="text-body-bold">My Groups</h2>
-        <ul className="flex flex-col gap-1">
-          {sampleGroups.map((group, i) => {
-            return (
-              <div
-                key={i}
-                className="flex items-center py-1 gap-3 cursor-pointer"
-              >
-                <Image
-                  src={`https://fer-uig.glitch.me?uuid=${i}`}
-                  width={37}
-                  height={37}
-                  alt={group.name}
-                  className="rounded-full max-lg:mx-auto"
-                />
-                <p className="text-dark-1 text-base-medium">{group.name}</p>
-              </div>
-            );
-          })}
-        </ul>
-      </div> */}
     </section>
   );
 };

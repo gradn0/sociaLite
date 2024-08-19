@@ -22,7 +22,9 @@ const Header = () => {
           Socia<span className="text-primary-500">Lite</span>
         </h1>
       </Link>
-      <Searchbar />
+      <span className="hidden md:flex">
+        <Searchbar />
+      </span>
       <SignedIn>
         <div className="flex items-center gap-5">
           <UserButton />
