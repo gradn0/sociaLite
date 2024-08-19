@@ -35,7 +35,7 @@ const Searchbar = () => {
   };
 
   return (
-    <div className="flex flex-col relative max-w-[30em]">
+    <div className="flex flex-col relative max-w-[30em] w-full">
       <form
         className="text-input gap-3 items-center flex"
         onSubmit={handleSubmit}

@@ -64,7 +64,10 @@ const PublicProfile = ({
       )}
 
       {isFriend && (
-        <p className="text-base-medium">You and {user.username} are friends!</p>
+        <p className="text-base-regular text-center">
+          You and <span className="text-base-semibold">{user.username} </span>
+          are friends!
+        </p>
       )}
 
       {isRequestSent && (

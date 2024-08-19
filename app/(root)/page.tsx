@@ -13,7 +13,9 @@ const page = async () => {
 
   return (
     <div className="main-content">
-      <h1 className="text-heading3-bold">Hello, {userInfo.username}</h1>
+      <h1 className="text-heading3-bold">
+        Hello, {userInfo.name.split(" ")[0] || userInfo.username}
+      </h1>
       <CreatePost userInfo={userInfo} />
       <PostList posts={posts} />
     </div>

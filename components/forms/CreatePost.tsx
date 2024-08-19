@@ -68,16 +68,16 @@ const CreatePost = ({ userInfo }: { userInfo: User }) => {
 
   return (
     <form
-      className="bg-light-1 rounded-lg py-2 px-7 shadow-sm"
+      className="bg-light-1 rounded-lg py-2 px-4 shadow-sm"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="flex gap-6 border-b border-grey p-4 items-center">
+      <div className="flex gap-6 border-b border-grey p-3 items-center">
         <Image
           src={userInfo.image}
           width={40}
           height={40}
           alt="your avatar"
-          className="rounded-full object-cover size-[47px]"
+          className="rounded-full object-cover max-md:size-[35px] size-[47px]"
         />
         <input
           {...register("text")}

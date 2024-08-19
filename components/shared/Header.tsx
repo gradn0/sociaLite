@@ -4,10 +4,10 @@ import Image from "next/image";
 import { SignedIn, SignOutButton, UserButton } from "@clerk/nextjs";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import Searchbar from "../forms/Searchbar";
-import { currentUser } from "@clerk/nextjs/server";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
 
 const Header = async () => {
-  const clerkUser = (await currentUser()) || null;
+  const userInfo = await getLoggedInUser();
   return (
     <nav className="header">
       <Link
@@ -24,14 +24,20 @@ const Header = async () => {
           Socia<span className="text-primary-500">Lite</span>
         </h1>
       </Link>
-      {clerkUser && (
-        <span className="hidden md:flex">
+      <SignedIn>
+        <span className="max-lg:hidden">
           <Searchbar />
         </span>
-      )}
-      <SignedIn>
         <div className="flex items-center gap-5">
-          <UserButton />
+          {userInfo && (
+            <Image
+              src={userInfo?.image || "/assets/defaultProfile.svg"}
+              alt="logo"
+              width={28}
+              height={28}
+              className="rounded-full size-[35px] object-cover"
+            />
+          )}
           <SignOutButton>
             <RiLogoutCircleLine
               size={20}
