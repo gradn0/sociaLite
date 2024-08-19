@@ -11,7 +11,7 @@ const SidebarRight = async () => {
       {user.friends.length > 0 && (
         <div className="flex flex-col max-lg:hidden p-1 gap-5">
           <h2 className="text-body-bold">Active Friends</h2>
-          <ul className="flex flex-col gap-1">
+          <ul className="flex flex-col gap-3">
             {user.friends.map((friend, i) => {
               return (
                 <Link
@@ -24,9 +24,9 @@ const SidebarRight = async () => {
                     width={37}
                     height={37}
                     alt={friend.username}
-                    className="rounded-full max-lg:mx-auto"
+                    className="rounded-full max-lg:mx-auto size-[37px] object-cover"
                   />
-                  <span className="size-[0.7em] bg-green-500 rounded-full z-10 absolute bottom-1 left-7 border-2 border-white"></span>
+                  <span className="size-[0.7em] bg-emerald-500 rounded-full z-10 absolute bottom-1 left-7 border-2 border-white"></span>
                   <p className="text-dark-1 text-base-medium">
                     {friend.username}
                   </p>

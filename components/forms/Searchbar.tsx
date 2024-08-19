@@ -57,7 +57,7 @@ const Searchbar = () => {
           className="absolute bg-light-1 top-full left-0 w-full mt-2 p-4 rounded shadow z-20 max-w-[30em]"
         >
           <p className="text-gray-1 text-small-medium mb-3">Users</p>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-3">
             {results?.users &&
               results?.users.map((user) => (
                 <Link
@@ -71,14 +71,14 @@ const Searchbar = () => {
                     width={27}
                     height={27}
                     alt="user avatar"
-                    className="rounded-full"
+                    className="rounded-full size-[32px] object-cover"
                   />
                   <p className="text-base-medium">{user.username}</p>
                 </Link>
               ))}
           </ul>
           <p className="text-gray-1 mt-4 text-small-medium mb-3">Groups</p>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-3">
             {results?.groups &&
               results?.groups.map((group) => (
                 <Link
@@ -88,11 +88,11 @@ const Searchbar = () => {
                   className="flex items-center gap-2 justify-start"
                 >
                   <Image
-                    src={group.image || "/assets/defaultPhoto.svg"}
+                    src={group.image || "/assets/defaultGroup.svg"}
                     width={27}
                     height={27}
                     alt="group avatar"
-                    className="rounded-full"
+                    className="rounded-full size-[27px] object-cover"
                   />
                   <p className="text-base-medium">{group.name}</p>
                 </Link>

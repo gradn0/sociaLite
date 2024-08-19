@@ -35,7 +35,7 @@ const PublicProfile = ({
         width={90}
         height={90}
         alt={user.username}
-        className="rounded-full border-[4px] border-primary-500-light"
+        className="rounded-full border-[4px] border-primary-500-light size-[130px] object-cover"
       />
       <h1 className="text-heading3-bold">{user.username}</h1>
       <p className="text-center text-gray-1 max-w-[50ch]">{user.bio}</p>

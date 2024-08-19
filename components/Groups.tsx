@@ -35,11 +35,11 @@ const Groups = ({
                 href={`/groups/${group.id}`}
               >
                 <Image
-                  src={group.image || "/assets/defaultPhoto.svg"}
+                  src={group.image || "/assets/defaultGroup.svg"}
                   width={50}
                   height={50}
                   alt={group.name}
-                  className="rounded-full size-[55px]"
+                  className="rounded-full size-[55px] object-cover"
                 />
                 <div className="flex flex-col">
                   <h2 className="text-base-semibold">{group.name}</h2>
@@ -54,7 +54,7 @@ const Groups = ({
                       width={50}
                       height={50}
                       alt={member.name}
-                      className={`rounded-full size-[23px] bg-light-1 p-[2px] ${
+                      className={`rounded-full size-[23px] bg-light-1 p-[2px] object-cover ${
                         i > 0 && "-translate-x-2"
                       }`}
                     />

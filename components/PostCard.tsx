@@ -19,7 +19,7 @@ const PostCard = ({ post }: { post: PostWithLikesAuthors }) => {
             width={30}
             height={30}
             alt="your avatar"
-            className="rounded-full size-[35px]"
+            className="rounded-full size-[35px] object-cover"
           />
         </Link>
         <div className="flex flex-col">

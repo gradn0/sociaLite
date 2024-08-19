@@ -45,7 +45,7 @@ const CreateComment = ({
         width={30}
         height={30}
         alt="your avatar"
-        className="rounded-full size-[35px]"
+        className="rounded-full size-[35px] object-cover"
       />
       <input
         {...register("text")}

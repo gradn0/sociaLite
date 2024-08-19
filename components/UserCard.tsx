@@ -37,7 +37,7 @@ const UserCard = ({
           width={30}
           height={30}
           alt={user.username}
-          className="rounded-full size-[35px] object-contain"
+          className="rounded-full size-[35px] object-cover"
         />
         <div className="flex flex-col">
           <h2></h2>
@@ -48,20 +48,20 @@ const UserCard = ({
         </div>
       </Link>
       {type === "request" && (
-        <div className="flex w-1/3 justify-center gap-2 ml-auto">
+        <div className="flex w-1/3 gap-2 ml-auto justify-end">
           <button
             onClick={onAccept}
-            className="text-light-1 bg-primary-500 w-full py-1.5 rounded-lg max-w-[300px] flex items-center justify-center gap-2"
+            className="text-light-1 bg-primary-500 py-1.5 rounded-lg max-w-[300px] flex items-center justify-center gap-2 max-lg:w-[3em] w-full"
           >
             <TiTick />
-            Accept
+            <p className="max-lg:hidden">Accept</p>
           </button>
           <button
             onClick={onDeny}
-            className="text-dark-1 bg-light-2 w-full py-1.5 rounded-lg max-w-[300px] flex items-center justify-center gap-2"
+            className="text-dark-1 bg-light-2 py-1.5 rounded-lg max-w-[300px] flex items-center justify-center gap-2 max-lg:w-[3em] w-full"
           >
             <IoMdClose />
-            Deny
+            <p className="max-lg:hidden">Accept</p>
           </button>
         </div>
       )}

@@ -8,6 +8,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { ClipLoader } from "react-spinners";
 import { z } from "zod";
 
 const GroupForm = ({
@@ -80,11 +81,11 @@ const GroupForm = ({
             width={87}
             height={87}
             alt="user avatar"
-            className="rounded-full max-lg:mx-auto"
+            className="rounded-full max-lg:mx-auto size-[87px] object-cover"
           />
         ) : (
           <Image
-            src="/assets/defaultPhoto.svg"
+            src="/assets/defaultGroup.svg"
             width={87}
             height={87}
             alt="user avatar"
@@ -147,8 +148,32 @@ const GroupForm = ({
           }`}
           disabled={isUploading || isLoading}
         >
-          {!group && (isUploading || isLoading ? "Creating..." : "Create")}
-          {group && (isUploading || isLoading ? "Updating..." : "Update")}
+          {!group &&
+            (isUploading || isLoading ? (
+              <ClipLoader
+                color="#80aaff"
+                loading={isUploading || isLoading}
+                size={25}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+                className="p-2"
+              />
+            ) : (
+              "Create"
+            ))}
+          {group &&
+            (isUploading || isLoading ? (
+              <ClipLoader
+                color="#80aaff"
+                loading={isUploading || isLoading}
+                size={25}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+                className="p-2"
+              />
+            ) : (
+              "Update"
+            ))}
         </button>
         <button
           type="button"

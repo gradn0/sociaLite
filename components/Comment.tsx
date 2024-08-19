@@ -18,7 +18,7 @@ const Comment = ({ comment }: { comment: PostWithLikesAuthors }) => {
           width={30}
           height={30}
           alt="your avatar"
-          className="rounded-full size-[35px]"
+          className="rounded-full size-[35px] object-cover"
         />
         <div className="flex flex-col">
           <Link

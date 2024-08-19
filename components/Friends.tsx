@@ -11,7 +11,7 @@ const Friends = ({ user }: { user: UserDetails }) => {
     <div className="main-content">
       <h1 className="text-heading3-bold">Friends</h1>
       {user.friends.length > 0 ? (
-        <div>
+        <ul className="flex flex-col gap-2">
           {user.friends.map((friend) => (
             <UserCard
               user={friend}
@@ -25,7 +25,7 @@ const Friends = ({ user }: { user: UserDetails }) => {
               }
             />
           ))}
-        </div>
+        </ul>
       ) : (
         <p className="text-gray-1">You don't have any friends yet</p>
       )}

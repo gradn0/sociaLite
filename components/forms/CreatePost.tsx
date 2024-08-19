@@ -77,7 +77,7 @@ const CreatePost = ({ userInfo }: { userInfo: User }) => {
           width={40}
           height={40}
           alt="your avatar"
-          className="rounded-full object-contain size-[47px]"
+          className="rounded-full object-cover size-[47px]"
         />
         <input
           {...register("text")}

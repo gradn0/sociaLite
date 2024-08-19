@@ -38,11 +38,11 @@ const Group = ({
     <div className="main-content relative">
       <div className="flex flex-col items-center gap-4 bg-light-1 rounded-lg p-7 shadow-sm main-content">
         <Image
-          src={group.image || "/assets/defaultPhoto.svg"}
+          src={group.image || "/assets/defaultGroup.svg"}
           width={90}
           height={90}
           alt={group.name}
-          className="rounded-full object-scale-down border-[4px] border-primary-500-light size-[90px]"
+          className="rounded-full object-cover border-[4px] border-primary-500-light size-[90px]"
         />
         <div className="flex items-center gap-2 cursor-pointer">
           <h1 className="text-heading3-bold">{group.name}</h1>
