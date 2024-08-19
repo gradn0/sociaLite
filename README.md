@@ -11,12 +11,12 @@ A ligthweight social media platform built in Nextjs and PostgreSQL.
 
 # Run locally
 
-- ```
+```
   git clone https://github.com/gradn0/socialite.git
   cd socialite
   npm install
   npm run dev
-  ```
+```
 # Screenshots
 
 <img src="/screenshots/desktop.png">
