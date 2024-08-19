@@ -1,8 +1,8 @@
 import PostList from "@/components/PostList";
 import PublicProfile from "@/components/PublicProfile";
 import { getPosts } from "@/lib/actions/post.actions";
-import { getUser } from "@/lib/actions/user.actions";
-import { currentUser } from "@clerk/nextjs/server";
+import { getLoggedInUser, getUser } from "@/lib/actions/user.actions";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const page = async ({ params }: { params: { id: string } }) => {
@@ -10,13 +10,13 @@ const page = async ({ params }: { params: { id: string } }) => {
   if (!user) return <p className="text-gray-1">User not found</p>;
   const posts = await getPosts(params.id);
 
-  const clerkUser = await currentUser();
-  if (!clerkUser) return null;
+  const userInfo = await getLoggedInUser();
+  if (!userInfo?.onboarded) redirect("/onboarding");
 
   return (
     <div className="flex flex-col gap-5 main-content">
       <PublicProfile
-        clerkId={clerkUser.id}
+        clerkId={userInfo.id}
         user={user}
         postCount={posts?.length ?? 0}
       />

@@ -1,10 +1,11 @@
 import Profile from "@/components/forms/Profile";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const page = async () => {
   const userInfo = await getLoggedInUser();
-  if (!userInfo) return;
+  if (!userInfo?.onboarded) redirect("/onboarding");
 
   return (
     <section className="main-content">

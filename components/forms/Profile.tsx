@@ -8,6 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { MdDriveFolderUpload } from "react-icons/md";
+import { ClipLoader } from "react-spinners";
 import { z } from "zod";
 
 interface Props {
@@ -167,12 +168,23 @@ const Profile = ({ userInfo }: { userInfo: Props }) => {
 
       <button
         type="submit"
-        className={`bg-primary-500 text-light-1 w-full py-1.5 rounded-lg max-w-[300px] mx-auto my-5 ${
+        className={`bg-primary-500 text-light-1 w-full py-1.5 rounded-lg max-w-[300px] min-h-[2.5em] mx-auto my-5 flex items-center justify-center ${
           isUploading || isLoading ? "bg-primary-500-light" : "bg-primary-500"
         }`}
         disabled={isUploading || isLoading}
       >
-        {isUploading || isLoading ? "Submitting..." : "Submit"}
+        {isLoading || isUploading ? (
+          <ClipLoader
+            loading={isLoading || isUploading}
+            size={20}
+            color="grey"
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            className="p-2"
+          />
+        ) : (
+          "Submit"
+        )}
       </button>
     </form>
   );

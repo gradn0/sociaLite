@@ -9,6 +9,6 @@ export const userSchema = z.object({
     .string()
     .min(3, { message: "Name too short" })
     .max(30, { message: "Name too long" }),
-  bio: z.string().max(30, { message: "Name too long" }),
+  bio: z.string().max(50, { message: "Bio too long" }),
   image: z.string().url().min(1),
 });

@@ -1,11 +1,12 @@
 import Friends from "@/components/Friends";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
+import { redirect } from "next/navigation";
 
 const page = async () => {
-  const user = await getLoggedInUser();
+  const userInfo = await getLoggedInUser();
+  if (!userInfo?.onboarded) redirect("/onboarding");
 
-  if (!user) return;
-  return <Friends user={user} />;
+  return <Friends user={userInfo} />;
 };
 
 export default page;

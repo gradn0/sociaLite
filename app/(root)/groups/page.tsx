@@ -1,11 +1,13 @@
 import Groups from "@/components/Groups";
 import { getGroups } from "@/lib/actions/group.actions";
-import { currentUser } from "@clerk/nextjs/server";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
+import { redirect } from "next/navigation";
 
 const page = async () => {
-  const clerkUser = await currentUser();
-  if (!clerkUser) return;
-  const groups = await getGroups(clerkUser.id);
+  const userInfo = await getLoggedInUser();
+  if (!userInfo?.onboarded) redirect("/onboarding");
+
+  const groups = await getGroups(userInfo.id);
   return <Groups groups={groups} />;
 };
 

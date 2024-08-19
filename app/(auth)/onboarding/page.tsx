@@ -1,10 +1,11 @@
 import Profile from "@/components/forms/Profile";
 import { getUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 const page = async () => {
   const clerkUser = await currentUser();
-  if (!clerkUser) return;
+  if (!clerkUser) redirect("/sign-in");
 
   const dbUser = await getUser(clerkUser.id);
 

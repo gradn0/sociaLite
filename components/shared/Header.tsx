@@ -4,8 +4,10 @@ import Image from "next/image";
 import { SignedIn, SignOutButton, UserButton } from "@clerk/nextjs";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import Searchbar from "../forms/Searchbar";
+import { currentUser } from "@clerk/nextjs/server";
 
-const Header = () => {
+const Header = async () => {
+  const clerkUser = (await currentUser()) || null;
   return (
     <nav className="header">
       <Link
@@ -22,9 +24,11 @@ const Header = () => {
           Socia<span className="text-primary-500">Lite</span>
         </h1>
       </Link>
-      <span className="hidden md:flex">
-        <Searchbar />
-      </span>
+      {clerkUser && (
+        <span className="hidden md:flex">
+          <Searchbar />
+        </span>
+      )}
       <SignedIn>
         <div className="flex items-center gap-5">
           <UserButton />
