@@ -47,10 +47,7 @@ const Group = ({
         <div className="flex items-center gap-2 cursor-pointer">
           <h1 className="text-heading3-bold">{group.name}</h1>
           {isAdmin && (
-            <FaEdit
-              color="gray"
-              onClick={() => setEditModalOpen(true)}
-            />
+            <FaEdit color="gray" onClick={() => setEditModalOpen(true)} />
           )}
         </div>
         <p className="text-center text-gray-1 max-w-[50ch]">{group.bio}</p>
@@ -68,12 +65,7 @@ const Group = ({
                   }`}
                   onClick={() => setActiveTab(i)}
                 >
-                  <Image
-                    src={tab.icon}
-                    width={25}
-                    height={25}
-                    alt={tab.icon}
-                  />
+                  <Image src={tab.icon} width={25} height={25} alt={tab.icon} />
                   <p>{tab.label}</p>
                 </div>
               );
@@ -116,6 +108,7 @@ const Group = ({
       {activeTab === 1 &&
         group.members.map((member) => (
           <UserCard
+            key={member.id}
             user={member}
             type={isAdmin && member.id !== user?.id ? "member" : "normal"}
             onRemove={async () =>
@@ -132,6 +125,7 @@ const Group = ({
         activeTab === 2 &&
         group.requests.map((user) => (
           <UserCard
+            key={user.id}
             user={user}
             type="request"
             onAccept={async () =>
@@ -155,10 +149,7 @@ const Group = ({
 
       {editModalOpen && (
         <div className="absolute rounded-lg shadow-sm flex gap-6 items-center top-[10%] left-1/2 -translate-x-1/2 w-[20em]">
-          <GroupForm
-            group={group}
-            onComplete={() => setEditModalOpen(false)}
-          />
+          <GroupForm group={group} onComplete={() => setEditModalOpen(false)} />
         </div>
       )}
     </div>

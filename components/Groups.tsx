@@ -17,10 +17,7 @@ const Groups = ({
       <div className="flex gap-4 items-center">
         <h1 className="text-heading3-bold">Groups</h1>
         <button className="p-1.5 bg-primary-500 rounded">
-          <IoMdAdd
-            color="white"
-            onClick={() => setModalOpen(true)}
-          />
+          <IoMdAdd color="white" onClick={() => setModalOpen(true)} />
         </button>
       </div>
       {groups && groups.groups.length > 0 ? (
@@ -50,6 +47,7 @@ const Groups = ({
                 {group.members.map((member, i) => {
                   return (
                     <Image
+                      key={member.id}
                       src={member.image || "/assets/defaultProfile.svg"}
                       width={50}
                       height={50}

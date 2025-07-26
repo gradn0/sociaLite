@@ -5,7 +5,7 @@ import { getPost } from "@/lib/actions/post.actions";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
 
-export const page = async ({ params }: { params: { id: string } }) => {
+const page = async ({ params }: { params: { id: string } }) => {
   const post = await getPost(params.id);
   const userInfo = await getLoggedInUser();
   if (!userInfo?.onboarded) redirect("/onboarding");
@@ -15,18 +15,10 @@ export const page = async ({ params }: { params: { id: string } }) => {
   return (
     <section className="main-content">
       <PostCard post={post} />
-      {userInfo && (
-        <CreateComment
-          userInfo={userInfo}
-          parentId={params.id}
-        />
-      )}
+      {userInfo && <CreateComment userInfo={userInfo} parentId={params.id} />}
 
       {post.children.map((comment: any) => (
-        <Comment
-          key={comment.id}
-          comment={comment}
-        />
+        <Comment key={comment.id} comment={comment} />
       ))}
     </section>
   );

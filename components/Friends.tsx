@@ -14,6 +14,7 @@ const Friends = ({ user }: { user: UserDetails }) => {
         <ul className="flex flex-col gap-2">
           {user.friends.map((friend) => (
             <UserCard
+              key={friend.id}
               user={friend}
               type="member"
               onRemove={async () =>

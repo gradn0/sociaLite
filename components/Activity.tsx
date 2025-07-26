@@ -15,6 +15,7 @@ const Activity = ({ user }: { user: UserDetails }) => {
         )}
         {user.requestsRecieved.map((request) => (
           <UserCard
+            key={request.recieverId}
             user={request.sender}
             type="request"
             actionText="sent you a friend request"
